@@ -94,24 +94,24 @@
 
 //why need input validation
 
-const express = require("express")
-const app = express()
-const zod = require('zod')
-const schema = zod.array(zod.number())
+// const express = require("express")
+// const app = express()
+// const zod = require('zod')
+// const schema = zod.array(zod.number())
 
-app.use(express.json())
-app.post('/health-checkup',function(req,res){
+// app.use(express.json())
+// app.post('/health-checkup',function(req,res){
   //do something kidney here
-  const kidneys = req.body.kidneys;
+  // const kidneys = req.body.kidneys;
   // const  kidneyLength = kidneys.length;
 
   // 
-  const response = schema.safeParse(kidneys)
-    res.send({
-      response
-    })
+//   const response = schema.safeParse(kidneys)
+//     res.send({
+//       response
+//     })
   
-});
+// });
 //Global catches
 
 
@@ -120,6 +120,22 @@ app.post('/health-checkup',function(req,res){
 //     "message":"something up with your server"
 //   })
 // })
-app.listen(3000)
+// app.listen(3000)
 
+
+
+const zod = require ("zod")
+function validateInput(obj){
+const schema = zod.object({
+  email:zod.string().email(),
+  password:zod.string().min(8)
+})
+const response = schema.safeParse(obj)
+console.log(response)
+}
+
+validateInput({
+  email:'shisir087@gmail.com',
+  password:"12345678"
+})
 
